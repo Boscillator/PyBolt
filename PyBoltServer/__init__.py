@@ -1,8 +1,12 @@
-from flask import Flask, request, Response, jsonify
+from flask import Flask, request, Response, jsonify, render_template
 from dis import dis
 from io import StringIO
 
 app = Flask(__name__)
+
+@app.route('/')
+def render_homepage():
+  return render_template('index.html')
 
 @app.route('/compile', methods=['POST'])
 def do_compile():
@@ -15,6 +19,7 @@ def do_compile():
   except SyntaxError as e:
     #if the code is wrong, return an error message with code 400
     return jsonify({
+      'ok':False,
       'data':e.msg,
       'line':e.lineno,
       'text':e.text
@@ -30,5 +35,6 @@ def do_compile():
 
   #return that result
   return jsonify({
+    'ok':True,
     'data':disassembly
   })
