@@ -1,3 +1,3 @@
-from PyBoltServer import app
+from PyBolt import app
 
 app.run(debug=True)
