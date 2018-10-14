@@ -29,16 +29,24 @@ function onSync() {
 }
 
 function registerInputEditor() {
-  input_editor = ace.edit('python-input');
-  input_editor.session.setMode("ace/mode/python");
+  input_editor = monaco.editor.create(document.getElementById("python-input"), {
+    value: "print('hello world')",
+    language: "python",
+    minimap: {
+      enabled: false
+    }
+  });
 
   window.setInterval(onSync, 2000);
 }
 
 function registerOutputEditor() {
-  output_editor = ace.edit('bytecode-output');
-  output_editor.setOptions({
-    readOnly: true
+  output_editor = monaco.editor.create(document.getElementById("bytecode-output"), {
+    value: "",
+    readOnly: true,
+    minimap: {
+      enabled: false
+    }
   });
 }
 

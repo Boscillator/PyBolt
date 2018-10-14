@@ -1,22 +1,26 @@
 <html>
   <head>
+      <link rel="stylesheet" data-name="vs/editor/editor.main" href="{{url_for('static', filename = 'vs/editor/editor.main.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}" />
-    
+
   </head>
 
   <body>
     <h1>PyBolt</h1>
     <div class="editors">
-      <div class="editor" id="python-input">print("Hello World!")</div>
+      <div class="editor" id="python-input"></div>
       <div class="editor" id="bytecode-output"></div>
     </div>
 
     <script>
       var COMPILE_URL = "{{url_for('do_compile')}}";
+      var require = { paths: { 'vs': '/static/vs' } };
     </script>
 
-    <script src="{{url_for('static',filename='ace/src-noconflict/ace.js')}}" type="text/javascript" charset="utf-8"></script>
-    <script src="{{url_for('static',filename='ace/src-noconflict/ext-split.js')}}" type="text/javascript" charset="utf-8"></script>
-    <script defer src="{{url_for('static',filename='index.js')}}"></script>
+    <script src="{{url_for('static',filename='vs/loader.js')}}"></script>
+    <script src="{{url_for('static',filename='vs/editor/editor.main.nls.js')}}"></script>
+    <script src="{{url_for('static',filename='vs/editor/editor.main.js')}}"></script>
+
+    <script src="{{url_for('static',filename='index.js')}}"></script>
   </body>
 </html>
