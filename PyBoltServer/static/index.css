@@ -1,9 +1,0 @@
-.editors {
-  display: flex;
-  flex-direction: row;
-}
-
-.editor {
-  width: 50%;
-  height: 90%;
-}

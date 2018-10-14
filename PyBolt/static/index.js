@@ -19,10 +19,12 @@ function compile(source, callback) {
 function onSync() {
   var current_editor_state = input_editor.getValue();
   if( current_editor_state !== last_editor_state) {
+    
     compile(current_editor_state, function(message) {
       output_editor.setValue(message.data, 1);
     })
     
+    last_editor_state = current_editor_state;
   }
 }
 
